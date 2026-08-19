@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NamePicker Pro - Vòng Quay May Mắn & Chọn Tên Ngẫu Nhiên | phongdang.io.vn</title>
+  <meta name="description"
+    content="Công cụ vòng quay may mắn chọn tên ngẫu nhiên, bốc thăm trúng thưởng, phân nhóm lớp học trực tuyến mượt mà, hiệu ứng âm thanh và pháo hoa sống động." />
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+
+  <!-- Google Fonts CDN (Inter, Montserrat, Playfair Display, Quicksand, JetBrains Mono, Oswald) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700&family=Montserrat:wght@500;700;800;900&family=Oswald:wght@600;700&family=Playfair+Display:wght@700;900&family=Quicksand:wght@600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Main Unified Stylesheet -->
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+
+  <!-- Confetti Particle Canvas Overlay -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">
+    <span id="toastIcon">✅</span>
+    <span id="toastMsg">Thông báo</span>
+  </div>
+
+  <!-- Header / Topbar -->
+  <header class="header">
+    <div class="container header-inner">
+      <!-- Brand Logo -->
+      <a href="https://phongdang.io.vn" class="brand-link">
+        <div class="brand-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polygon points="12 8 8 12 12 16 12 8"></polygon>
+            <line x1="16" y1="12" x2="12" y2="12"></line>
+          </svg>
+        </div>
+        <div>
+          <span class="brand-title">NamePicker Pro</span>
+          <span class="brand-sub" data-i18n="brandSub">Vòng quay may mắn & Chọn tên</span>
+        </div>
+      </a>
+
+      <!-- Header Actions & Controls -->
+      <div class="header-actions">
+        <!-- Panel Visibility Toggles -->
+        <button id="toggleListBtn" class="btn-panel-toggle active" data-i18n-title="btnToggleList"
+          title="Ẩn/Hiện Danh Sách">
+          <span>👥</span> <span data-i18n="listTitle">Danh Sách</span>
+        </button>
+
+        <button id="toggleHistoryBtn" class="btn-panel-toggle active" data-i18n-title="btnToggleHistory"
+          title="Ẩn/Hiện Lịch Sử">
+          <span>🏆</span> <span data-i18n="historyTitle">Lịch Sử</span>
+        </button>
+
+        <!-- Duration Timer Slider -->
+        <div class="control-item">
+          <span>⏱️ <span data-i18n="timeLabel">Thời gian:</span></span>
+          <div class="slider-timer-box">
+            <input type="range" id="durationSlider" min="1" max="20" step="1" value="5" title="Thời gian quay (giây)" />
+            <span id="durationDisplay" class="timer-badge">5s</span>
+          </div>
+        </div>
+
+        <!-- Sound Toggle -->
+        <button id="soundToggleBtn" class="btn-icon active" data-i18n-title="soundToggleTitle"
+          title="Bật / Tắt âm thanh">
+          <span id="soundIcon">🔊</span>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button id="themeToggleBtn" class="btn-icon" data-i18n-title="themeToggleTitle"
+          title="Chuyển chế độ Sáng / Tối">
+          <span id="themeIcon">☀️</span>
+        </button>
+
+        <!-- Settings Modal Trigger -->
+        <button id="settingsBtn" class="btn-icon" data-i18n-title="settingsBtnTitle" title="Cài đặt hệ thống">
+          <span>⚙️</span>
+        </button>
+
+        <!-- Language Toggle -->
+        <button id="langToggleBtn" class="lang-btn" title="Change Language / Đổi ngôn ngữ">
+          🇻🇳 VI
+        </button>
+
+        <!-- Fullscreen Toggle -->
+        <button id="fullscreenBtn" class="btn-icon" data-i18n-title="fullscreenBtnTitle" title="Toàn màn hình">
+          <span>⛶</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Workspace Area -->
+  <main class="main-wrapper">
+    <div class="container">
+      <div id="appWorkspace" class="app-workspace">
+
+        <!-- ====================================================================
+             Left Panel: Participants Name List & Presets
+             ==================================================================== -->
+        <section class="card" id="leftPanel">
+          <div class="card-header">
+            <span class="card-title">
+              <span>👥</span> <span data-i18n="listTitle">Danh Sách</span>
+            </span>
+            <div class="flex items-center gap-2">
+              <span id="namesCount" class="badge badge-primary">0 mục</span>
+              <button id="collapseListBtn" class="btn-collapse" data-i18n-title="btnHideList" title="Ẩn danh sách">◀
+                Ẩn</button>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <!-- Textarea for Names -->
+            <textarea id="namesInput" class="names-textarea" data-i18n-placeholder="listPlaceholder"
+              placeholder="Nhập mỗi tên trên một dòng..."></textarea>
+
+            <!-- Quick Action Buttons -->
+            <div class="list-actions-grid">
+              <button id="shuffleBtn" class="btn btn-secondary">
+                <span>🔀</span> <span data-i18n="btnShuffle">Xáo trộn</span>
+              </button>
+              <button id="sortBtn" class="btn btn-secondary">
+                <span>🔤</span> <span data-i18n="btnSort">Xếp A-Z</span>
+              </button>
+              <button id="dedupeBtn" class="btn btn-secondary">
+                <span>🧹</span> <span data-i18n="btnDedupe">Lọc trùng</span>
+              </button>
+              <button id="clearListBtn" class="btn btn-secondary">
+                <span>🗑️</span> <span data-i18n="btnClear">Xóa hết</span>
+              </button>
+            </div>
+
+            <!-- Presets Selector -->
+            <div style="margin-top: 0.85rem;">
+              <span
+                style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;"
+                data-i18n="presetsTitle">
+                ⭐ Danh sách mẫu (Presets)
+              </span>
+              <div class="preset-pills">
+                <button type="button" class="preset-btn" data-preset="class" data-i18n="presetClass">🎓 Lớp học</button>
+                <button type="button" class="preset-btn" data-preset="numbers" data-i18n="presetNumbers">🔢 Số
+                  1-20</button>
+                <button type="button" class="preset-btn" data-preset="minigame" data-i18n="presetMinigame">🎁 Mini
+                  Game</button>
+                <button type="button" class="preset-btn" data-preset="teams" data-i18n="presetTeams">🛡️ 4 Đội
+                  nhóm</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             Center Stage: HD Wheel Canvas & Spin Button
+             ==================================================================== -->
+        <section class="card wheel-stage">
+          <!-- Wheel Bezel & Canvas -->
+          <div class="wheel-glow-wrapper">
+            <!-- Metallic Pointer at 12 o'clock -->
+            <div id="wheelPointer" class="wheel-pointer">
+              <svg viewBox="0 0 46 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M23 52 L5 12 Q0 2 12 2 L34 2 Q46 2 41 12 Z" fill="#dc2626" stroke="#ffffff"
+                  stroke-width="2.5" />
+                <path d="M23 48 L8 14 Q4 6 13 6 L33 6 Q42 6 38 14 Z" fill="url(#pointerGrad)" />
+                <circle cx="23" cy="14" r="5" fill="#ffffff" />
+                <defs>
+                  <linearGradient id="pointerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ef4444" />
+                    <stop offset="100%" stop-color="#b91c1c" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+
+            <!-- Glassmorphic Bezel -->
+            <div class="wheel-bezel">
+              <canvas id="wheelCanvas" width="800" height="800"></canvas>
+
+              <!-- Center Glowing Hub -->
+              <div id="wheelHub" class="wheel-hub" data-i18n-title="hubTitle" title="Nhấn vào tâm để quay">
+                <span class="hub-star">★</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Spin Action Button -->
+          <button id="spinBtn" class="btn-spin">
+            <span>✨</span>
+            <span data-i18n="btnSpin">QUAY NGAY</span>
+          </button>
+
+          <div class="spin-hint">
+            <span data-i18n="spinHintPrefix">Nhấn nút hoặc bấm</span>
+            <kbd class="kbd" data-i18n="spinHintKey">Phím Space</kbd>
+            <span data-i18n="spinHintSuffix">để quay</span>
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             Right Panel: Winner History & Actions
+             ==================================================================== -->
+        <section class="card" id="rightPanel">
+          <div class="card-header">
+            <span class="card-title">
+              <span>🏆</span> <span data-i18n="historyTitle">Lịch Sử Trúng</span>
+            </span>
+            <div class="flex items-center gap-2">
+              <span id="historyCount" class="badge badge-indigo">0</span>
+              <button id="collapseHistoryBtn" class="btn-collapse" data-i18n-title="btnHideHistory"
+                title="Ẩn lịch sử">Ẩn ▶</button>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <div class="history-scroll">
+              <!-- Empty State -->
+              <div id="historyEmpty" class="empty-state">
+                <div class="empty-icon">🎯</div>
+                <div class="empty-title" data-i18n="historyEmptyTitle">Chưa có lượt quay</div>
+                <div class="empty-sub" data-i18n="historyEmptySub">Kết quả trúng thưởng sẽ hiển thị tại đây.</div>
+              </div>
+
+              <!-- History List -->
+              <ul id="historyList" class="history-list"></ul>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="flex gap-2">
+              <button id="exportHistoryBtn" class="btn btn-secondary btn-block" title="Xuất kết quả">
+                <span>📥</span> <span data-i18n="btnExport">Xuất File</span>
+              </button>
+              <button id="clearHistoryBtn" class="btn btn-outline btn-block" title="Xóa toàn bộ lịch sử">
+                <span>🗑️</span> <span data-i18n="btnClearHistory">Xóa lịch sử</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       Winner Modal Dialog
+       ======================================================================== -->
+  <div id="winnerModal" class="modal-backdrop hidden">
+    <div class="modal-box">
+      <!-- Winner Celebration Hero -->
+      <div class="winner-hero">
+        <span class="winner-title-badge" data-i18n="modalTitle">🎉 KẾT QUẢ BỐC THĂM</span>
+        <div class="winner-icon">🏆</div>
+      </div>
+
+      <!-- Winner Body -->
+      <div class="winner-body">
+        <div class="winner-label" data-i18n="modalSubtitle">Người may mắn trúng thưởng:</div>
+        <div id="modalWinnerName" class="winner-name">---</div>
+
+        <!-- Winner Actions -->
+        <div class="winner-actions">
+          <button id="removeWinnerBtn" class="btn btn-danger">
+            <span data-i18n="modalBtnRemove">✕ Xóa khỏi DS</span>
+          </button>
+          <button id="keepWinnerBtn" class="btn btn-primary">
+            <span data-i18n="modalBtnKeep">✓ Giữ lại tên</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       Settings Modal Dialog
+       ======================================================================== -->
+  <div id="settingsModal" class="modal-backdrop hidden">
+    <div class="modal-box modal-box-large">
+      <div class="modal-head">
+        <span class="modal-title" data-i18n="settingsTitle">⚙️ Cài Đặt Hệ Thống</span>
+        <button id="closeSettingsBtn" class="modal-close">✕</button>
+      </div>
+
+      <!-- Settings Tabs Header -->
+      <div class="settings-tabs">
+        <button type="button" class="settings-tab active" data-sec="wheel" data-i18n="tabWheel">🎡 Vòng quay</button>
+        <button type="button" class="settings-tab" data-sec="audio" data-i18n="tabAudio">🔊 Âm thanh</button>
+        <button type="button" class="settings-tab" data-sec="font" data-i18n="tabFont">🔤 Phông & Màu</button>
+        <button type="button" class="settings-tab" data-sec="lang" data-i18n="tabLang">🌐 Ngôn ngữ</button>
+      </div>
+
+      <!-- Settings Content -->
+      <div class="modal-content">
+        <!-- Section 1: Wheel Settings -->
+        <div id="sec_wheel" class="settings-section">
+          <div class="setting-row">
+            <div class="flex justify-between items-center">
+              <span class="setting-label" data-i18n="settingDuration">Thời gian quay (giây):</span>
+              <span id="setDurationVal" class="timer-badge">5s</span>
+            </div>
+            <input type="range" id="setDurationSlider" min="1" max="20" step="1" value="5" />
+          </div>
+
+          <div class="setting-row">
+            <span class="setting-label" data-i18n="settingHubIcon">Biểu tượng trục tâm:</span>
+            <div class="icon-picker-grid">
+              <button type="button" class="icon-btn active" data-icon="★">★</button>
+              <button type="button" class="icon-btn" data-icon="👑">👑</button>
+              <button type="button" class="icon-btn" data-icon="🏆">🏆</button>
+              <button type="button" class="icon-btn" data-icon="💎">💎</button>
+              <button type="button" class="icon-btn" data-icon="🔥">🔥</button>
+              <button type="button" class="icon-btn" data-icon="❤️">❤️</button>
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <label for="autoModalCheck" data-i18n="settingAutoModal">Tự động hiển thị chúc mừng khi quay xong</label>
+            <input type="checkbox" id="autoModalCheck" checked />
+          </div>
+
+          <div class="toggle-row">
+            <label for="confettiCheck" data-i18n="settingConfetti">Hiệu ứng pháo hoa chúc mừng</label>
+            <input type="checkbox" id="confettiCheck" checked />
+          </div>
+        </div>
+
+        <!-- Section 2: Audio Settings -->
+        <div id="sec_audio" class="settings-section hidden">
+          <div class="toggle-row">
+            <label for="soundMasterCheck" data-i18n="settingSoundMaster">Bật âm thanh hiệu ứng</label>
+            <input type="checkbox" id="soundMasterCheck" checked />
+          </div>
+
+          <div class="setting-row">
+            <div class="flex justify-between items-center">
+              <span class="setting-label" data-i18n="settingVolume">Âm lượng tổng:</span>
+              <span id="soundVolumeVal" class="timer-badge">80%</span>
+            </div>
+            <input type="range" id="soundVolumeSlider" min="0" max="100" step="5" value="80" />
+          </div>
+
+          <div class="setting-row">
+            <div class="flex justify-between items-center">
+              <span class="setting-label" data-i18n="settingTickStyle">Kiểu tiếng tạch tạch (Tick sound):</span>
+              <button type="button" id="testTickBtn" class="btn btn-secondary"
+                style="padding: 0.25rem 0.6rem; font-size: 0.72rem;" data-i18n="btnTestSound">Thử âm thanh</button>
+            </div>
+            <select id="tickStyleSelect" class="select-field">
+              <option value="mechanical">⚙️ Cơ học (Mechanical Click - Mặc định)</option>
+              <option value="wood">🪵 Gõ gỗ (Woodblock Ping)</option>
+              <option value="bell">🔔 Chuông ngân (Metallic Bell)</option>
+              <option value="retro">👾 Game 8-bit (Retro Arcade)</option>
+              <option value="soft">🫧 Nhẹ nhàng (Soft Tap)</option>
+            </select>
+          </div>
+
+          <div class="setting-row">
+            <div class="flex justify-between items-center">
+              <span class="setting-label" data-i18n="settingWinStyle">Kiểu tiếng thắng (Victory sound):</span>
+              <button type="button" id="testWinBtn" class="btn btn-secondary"
+                style="padding: 0.25rem 0.6rem; font-size: 0.72rem;" data-i18n="btnTestSound">Thử âm thanh</button>
+            </div>
+            <select id="winStyleSelect" class="select-field">
+              <option value="fanfare">🎺 Kèn đồng chiến thắng (Grand Fanfare)</option>
+              <option value="chime">✨ Chuông thần kỳ (Magical Chime)</option>
+              <option value="applause">👏 Tiếng vỗ tay hoan hô (Crowd Applause)</option>
+              <option value="retro_win">🎮 Nhạc thắng game (Retro Jingle)</option>
+            </select>
+          </div>
+
+          <!-- TTS Voice Announcement Controls -->
+          <div style="margin: 0.4rem 0; border-top: 1px dashed var(--border-color);"></div>
+
+          <div class="toggle-row">
+            <label for="ttsMasterCheck" data-i18n="settingTtsEnable">Tự động đọc tên người trúng thưởng (Giọng Google / AI)</label>
+            <input type="checkbox" id="ttsMasterCheck" />
+          </div>
+
+          <div class="setting-row" id="ttsVoiceRow">
+            <div class="flex justify-between items-center">
+              <span class="setting-label" data-i18n="settingTtsVoice">Chọn giọng đọc:</span>
+              <button type="button" id="testTtsBtn" class="btn btn-secondary"
+                style="padding: 0.25rem 0.6rem; font-size: 0.72rem;" data-i18n="btnTestTts">Thử giọng đọc</button>
+            </div>
+            <select id="ttsVoiceSelect" class="select-field">
+              <option value="" data-i18n="ttsDefaultVoice">-- Mặc định Google / Hệ thống --</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Section 3: Font & Palette Settings -->
+        <div id="sec_font" class="settings-section hidden">
+          <div class="setting-row">
+            <span class="setting-label" data-i18n="settingFont">Phông chữ vòng quay:</span>
+            <select id="wheelFontSelect" class="select-field">
+              <option value="Inter">Inter (Hiện đại & Sắc nét - Mặc định)</option>
+              <option value="Montserrat">Montserrat (Đậm đà & Năng động)</option>
+              <option value="Playfair Display">Playfair Display (Sang trọng & Cổ điển)</option>
+              <option value="Quicksand">Quicksand (Bo tròn & Thân thiện)</option>
+              <option value="JetBrains Mono">JetBrains Mono (Kỹ thuật & Code)</option>
+              <option value="Oswald">Oswald (Gọn gàng & Mạnh mẽ)</option>
+            </select>
+          </div>
+
+          <div class="setting-row">
+            <span class="setting-label" data-i18n="settingPalette">Bảng màu vòng quay:</span>
+            <div class="palette-grid">
+              <div class="palette-chip active" data-pal="rainbow">
+                <div class="palette-colors-bar">
+                  <span style="background: #0284c7;"></span>
+                  <span style="background: #ef4444;"></span>
+                  <span style="background: #10b981;"></span>
+                  <span style="background: #f59e0b;"></span>
+                  <span style="background: #8b5cf6;"></span>
+                </div>
+                <span class="palette-name">🌈 Rainbow</span>
+              </div>
+
+              <div class="palette-chip" data-pal="cyberpunk">
+                <div class="palette-colors-bar">
+                  <span style="background: #06b6d4;"></span>
+                  <span style="background: #ec4899;"></span>
+                  <span style="background: #8b5cf6;"></span>
+                  <span style="background: #eab308;"></span>
+                  <span style="background: #3b82f6;"></span>
+                </div>
+                <span class="palette-name">⚡ Cyberpunk</span>
+              </div>
+
+              <div class="palette-chip" data-pal="pastel">
+                <div class="palette-colors-bar">
+                  <span style="background: #60a5fa;"></span>
+                  <span style="background: #f87171;"></span>
+                  <span style="background: #4ade80;"></span>
+                  <span style="background: #facc15;"></span>
+                  <span style="background: #c084fc;"></span>
+                </div>
+                <span class="palette-name">🍬 Pastel</span>
+              </div>
+
+              <div class="palette-chip" data-pal="royal">
+                <div class="palette-colors-bar">
+                  <span style="background: #1e3a8a;"></span>
+                  <span style="background: #d97706;"></span>
+                  <span style="background: #047857;"></span>
+                  <span style="background: #4338ca;"></span>
+                  <span style="background: #be123c;"></span>
+                </div>
+                <span class="palette-name">👑 Royal Gold</span>
+              </div>
+
+              <div class="palette-chip" data-pal="sunset">
+                <div class="palette-colors-bar">
+                  <span style="background: #e11d48;"></span>
+                  <span style="background: #f97316;"></span>
+                  <span style="background: #f59e0b;"></span>
+                  <span style="background: #fb7185;"></span>
+                  <span style="background: #c026d3;"></span>
+                </div>
+                <span class="palette-name">🌅 Sunset</span>
+              </div>
+
+              <div class="palette-chip" data-pal="ocean">
+                <div class="palette-colors-bar">
+                  <span style="background: #0284c7;"></span>
+                  <span style="background: #0891b2;"></span>
+                  <span style="background: #06b6d4;"></span>
+                  <span style="background: #2563eb;"></span>
+                  <span style="background: #38bdf8;"></span>
+                </div>
+                <span class="palette-name">🌊 Ocean Cyan</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 4: Language Settings -->
+        <div id="sec_lang" class="settings-section hidden">
+          <div class="toggle-row">
+            <label class="flex items-center gap-2">
+              <input type="radio" name="appLang" value="vi" checked />
+              <span>🇻🇳 Tiếng Việt (Vietnamese)</span>
+            </label>
+          </div>
+          <div class="toggle-row">
+            <label class="flex items-center gap-2">
+              <input type="radio" name="appLang" value="en" />
+              <span>🇬🇧 English (International)</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <button id="saveSettingsBtn" class="btn btn-primary btn-block">
+          <span data-i18n="btnSaveSettings">Đóng & Áp dụng</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-copy">
+        © 2026 <strong>NamePicker Pro</strong> • Một công cụ thuộc hệ sinh thái <a href="https://phongdang.io.vn"
+          target="_blank" class="footer-domain">Phong Đặng</a>
+      </div>
+      <div class="footer-links">
+        <a href="https://phongdang.io.vn" target="_blank" class="footer-link">🌐 phongdang.io.vn</a>
+        <a href="https://github.com/dqphong0302" target="_blank" class="footer-link">💻 GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modular Scripts in Proper Sequence -->
+  <script src="./js/i18n.js"></script>
+  <script src="./js/sound.js"></script>
+  <script src="./js/tts.js"></script>
+  <script src="./js/confetti.js"></script>
+  <script src="./js/wheel-engine.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+
+</html>
