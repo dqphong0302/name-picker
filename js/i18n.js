@@ -88,7 +88,12 @@ const i18n = (function () {
       toastClearHistory: 'Đã xóa sạch lịch sử quay!',
       toastExportHistory: 'Đã tải xuống danh sách kết quả!',
       toastNoHistory: 'Chưa có lịch sử để xuất file',
-      toastNeedTwo: 'Cần ít nhất 2 mục để xáo trộn'
+      toastNeedTwo: 'Cần ít nhất 2 mục để xáo trộn',
+
+      // Footer
+      footerCopy: 'Một công cụ thuộc hệ sinh thái',
+      footerHome: '🌐 phongdang.io.vn',
+      footerGitHub: '💻 GitHub'
     },
 
     en: {
@@ -172,7 +177,12 @@ const i18n = (function () {
       toastClearHistory: 'Cleared all history records!',
       toastExportHistory: 'Downloaded results text file!',
       toastNoHistory: 'No history records to export',
-      toastNeedTwo: 'Need at least 2 names to shuffle'
+      toastNeedTwo: 'Need at least 2 names to shuffle',
+
+      // Footer
+      footerCopy: 'A tool from the ecosystem of',
+      footerHome: '🌐 phongdang.io.vn',
+      footerGitHub: '💻 GitHub'
     }
   };
 
