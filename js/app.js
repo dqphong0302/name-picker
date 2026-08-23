@@ -662,13 +662,21 @@
   // 8. Theme & Fullscreen Controls
   // ==========================================================================
   const Theme = {
-    STORAGE_KEY: 'pd_template_theme',
+    // Khóa theme dùng chung PDUI (pd_theme) để đồng bộ giữa các công cụ cùng origin.
+    STORAGE_KEY: 'pd_theme',
+    LEGACY_KEY: 'pd_template_theme',
 
     init() {
-      const saved = localStorage.getItem(this.STORAGE_KEY);
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const initial = saved || (prefersDark ? 'dark' : 'light');
-      this.apply(initial);
+      let saved = localStorage.getItem(this.STORAGE_KEY);
+      if (saved !== 'dark' && saved !== 'light') {
+        // Di trú từ khóa cũ nếu có, nếu không thì theo tùy chọn hệ thống.
+        const legacy = localStorage.getItem(this.LEGACY_KEY);
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        saved = (legacy === 'dark' || legacy === 'light')
+          ? legacy
+          : (prefersDark ? 'dark' : 'light');
+      }
+      this.apply(saved);
     },
 
     apply(theme) {

@@ -19,6 +19,19 @@
     content="Công cụ vòng quay may mắn chọn tên ngẫu nhiên, bốc thăm trúng thưởng, phân nhóm lớp học trực tuyến mượt mà, hiệu ứng âm thanh và pháo hoa sống động." />
   <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
 
+  <!-- Ngăn nhấp nháy theme: áp dụng theme đã lưu trước khi paint -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('pd_theme');
+        if (t !== 'light' && t !== 'dark') {
+          t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.classList.toggle('dark', t === 'dark');
+      } catch (e) {}
+    })();
+  </script>
+
   <!-- Google Fonts CDN (Inter, Montserrat, Playfair Display, Quicksand, JetBrains Mono, Oswald) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
