@@ -1201,33 +1201,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 /* --------------------------------------------------------------------------
    12. Toast Notifications & Footer
    -------------------------------------------------------------------------- */
-.toast {
-  position: fixed;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%) translateY(120%);
-  z-index: 120;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.75rem 1.25rem;
-  background-color: var(--bg-card);
-  color: var(--text-main);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-full);
-  box-shadow: var(--shadow-floating);
-  font-size: 0.85rem;
-  font-weight: 600;
-  pointer-events: none;
-  opacity: 0;
-  transition: transform var(--transition-smooth), opacity var(--transition-smooth);
-}
-
-.toast.show {
-  transform: translateX(-50%) translateY(0);
-  opacity: 1;
-  pointer-events: auto;
-}
+/* PDUI.Toast (vendored pdui.css) handles toast styling and animation. */
 
 .empty-state {
   display: flex;

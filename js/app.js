@@ -100,24 +100,9 @@
 
   // ==========================================================================
   // 1. Toast Notification Helper
-  // ==========================================================================
-  let toastTimer = null;
+  // showToast — delegates to PDUI.Toast.show (vendored pdui.js).
   function showToast(message, type = 'success', duration = 2500) {
-    if (!DOM.toast) return;
-    const icons = {
-      success: '✅',
-      error: '❌',
-      warning: '⚠️',
-      info: 'ℹ️'
-    };
-    if (DOM.toastIcon) DOM.toastIcon.textContent = icons[type] || '🔔';
-    if (DOM.toastMsg) DOM.toastMsg.textContent = message;
-
-    DOM.toast.classList.add('show');
-    if (toastTimer) clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => {
-      DOM.toast.classList.remove('show');
-    }, duration);
+    if (window.PDUI && PDUI.Toast) PDUI.Toast.show(message, type, duration);
   }
 
   // ==========================================================================
@@ -661,38 +646,11 @@
   // ==========================================================================
   // 8. Theme & Fullscreen Controls
   // ==========================================================================
+  // Theme — PDUI.Theme handles class/localStorage; we subscribe for WheelEngine redraw.
+  // Button already has data-pd-theme-toggle so PDUI auto-binds click.
   const Theme = {
-    // Khóa theme dùng chung PDUI (pd_theme) để đồng bộ giữa các công cụ cùng origin.
-    STORAGE_KEY: 'pd_theme',
-    LEGACY_KEY: 'pd_template_theme',
-
     init() {
-      let saved = localStorage.getItem(this.STORAGE_KEY);
-      if (saved !== 'dark' && saved !== 'light') {
-        // Di trú từ khóa cũ nếu có, nếu không thì theo tùy chọn hệ thống.
-        const legacy = localStorage.getItem(this.LEGACY_KEY);
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        saved = (legacy === 'dark' || legacy === 'light')
-          ? legacy
-          : (prefersDark ? 'dark' : 'light');
-      }
-      this.apply(saved);
-    },
-
-    apply(theme) {
-      if (theme === 'dark') {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-      localStorage.setItem(this.STORAGE_KEY, theme);
-      if (DOM.themeIcon) DOM.themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
-      WheelEngine.draw();
-    },
-
-    toggle() {
-      const isDark = document.documentElement.classList.contains('dark');
-      this.apply(isDark ? 'light' : 'dark');
+      document.addEventListener("pdui:themechange", () => WheelEngine.draw());
     }
   };
 
@@ -851,7 +809,8 @@
     DOM.collapseHistoryBtn?.addEventListener('click', toggleRightPanel);
 
     // Toolbar buttons
-    DOM.themeToggleBtn?.addEventListener('click', () => Theme.toggle());
+    // Theme toggle handled by PDUI.Theme (data-pd-theme-toggle on button).
+    // Theme.init() subscribes pdui:themechange for WheelEngine.draw().
     DOM.soundToggleBtn?.addEventListener('click', () => SoundEngine.toggle());
     DOM.fullscreenBtn?.addEventListener('click', toggleFullscreen);
     document.addEventListener('fullscreenchange', handleFullscreenChange);

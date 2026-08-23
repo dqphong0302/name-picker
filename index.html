@@ -50,11 +50,7 @@
   <!-- Confetti Particle Canvas Overlay -->
   <canvas id="confettiCanvas"></canvas>
 
-  <!-- Toast Notification -->
-  <div id="toast" class="toast">
-    <span id="toastIcon">✅</span>
-    <span id="toastMsg">Thông báo</span>
-  </div>
+  <!-- PDUI.Toast dynamically creates #pd-toast via pdui.js -->
 
   <!-- Header / Topbar -->
   <header class="header pd-header">
@@ -105,8 +101,8 @@
 
         <!-- Theme Toggle -->
         <button id="themeToggleBtn" class="btn-icon" data-i18n-title="themeToggleTitle"
-          title="Chuyển chế độ Sáng / Tối">
-          <span id="themeIcon">☀️</span>
+          title="Chuyển chế độ Sáng / Tối" data-pd-theme-toggle>
+          <span id="themeIcon" data-pd-theme-icon>☀️</span>
         </button>
 
         <!-- Settings Modal Trigger -->
@@ -556,6 +552,7 @@
   <script src="./js/tts.js"></script>
   <script src="./js/confetti.js"></script>
   <script src="./js/wheel-engine.js"></script>
+  <script src="./vendor/pdui/pdui.js"></script>
   <script src="./js/app.js"></script>
 </body>
 
