@@ -12,7 +12,7 @@ const ConfettiEngine = (function () {
   let animationId = null;
 
   const COLORS = [
-    '#38bdf8', '#818cf8', '#f43f5e', '#10b981', '#f59e0b',
+    '#60a5fa', '#818cf8', '#f43f5e', '#10b981', '#f59e0b',
     '#ec4899', '#a855f7', '#06b6d4', '#eab308', '#ffffff'
   ];
 

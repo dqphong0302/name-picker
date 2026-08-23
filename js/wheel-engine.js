@@ -27,7 +27,7 @@ const WheelEngine = (function () {
   // Curated Color Palettes
   const PALETTES = {
     rainbow: [
-      '#0284c7', '#ef4444', '#10b981', '#f59e0b', '#8b5cf6',
+      '#1e40af', '#ef4444', '#10b981', '#f59e0b', '#8b5cf6',
       '#ec4899', '#06b6d4', '#f97316', '#14b8a6', '#6366f1'
     ],
     cyberpunk: [
@@ -43,7 +43,7 @@ const WheelEngine = (function () {
       '#e11d48', '#f97316', '#f59e0b', '#fb7185', '#ea580c', '#c026d3'
     ],
     ocean: [
-      '#0284c7', '#0891b2', '#0369a1', '#06b6d4', '#2563eb', '#38bdf8'
+      '#1e40af', '#0891b2', '#1e3a8a', '#06b6d4', '#2563eb', '#3b82f6'
     ]
   };
 
