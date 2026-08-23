@@ -27,10 +27,12 @@
     rel="stylesheet">
 
   <!-- Main Unified Stylesheet -->
-  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./vendor/pdui/pdui.css" />
+  <link rel="stylesheet" href="./css/style.css?v=20260822-security1" />
 </head>
 
-<body>
+<body data-pdui-profile="tool">
+  <a class="pd-skip-link" href="#main-content">Bỏ qua đến nội dung chính</a>
 
   <!-- Confetti Particle Canvas Overlay -->
   <canvas id="confettiCanvas"></canvas>
@@ -42,11 +44,11 @@
   </div>
 
   <!-- Header / Topbar -->
-  <header class="header">
-    <div class="container header-inner">
+  <header class="header pd-header">
+    <div class="container header-inner pd-container pd-header__inner">
       <!-- Brand Logo -->
-      <a href="https://phongdang.io.vn" class="brand-link">
-        <div class="brand-icon">
+      <a href="https://phongdang.io.vn" class="brand-link pd-brand">
+        <div class="brand-icon pd-brand__icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
             stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"></circle>
@@ -55,13 +57,13 @@
           </svg>
         </div>
         <div>
-          <span class="brand-title">NamePicker Pro</span>
-          <span class="brand-sub" data-i18n="brandSub">Vòng quay may mắn & Chọn tên</span>
+          <span class="brand-title pd-brand__title">NamePicker Pro</span>
+          <span class="brand-sub pd-brand__subtitle" data-i18n="brandSub">Vòng quay may mắn & Chọn tên</span>
         </div>
       </a>
 
       <!-- Header Actions & Controls -->
-      <div class="header-actions">
+      <div class="header-actions pd-header__actions">
         <!-- Panel Visibility Toggles -->
         <button id="toggleListBtn" class="btn-panel-toggle active" data-i18n-title="btnToggleList"
           title="Ẩn/Hiện Danh Sách">
@@ -113,7 +115,8 @@
   </header>
 
   <!-- Main Workspace Area -->
-  <main class="main-wrapper">
+  <main id="main-content" class="main-wrapper pd-main">
+    <h1 class="pd-sr-only">NamePicker Pro</h1>
     <div class="container">
       <div id="appWorkspace" class="app-workspace">
 
@@ -134,7 +137,7 @@
 
           <div class="card-body">
             <!-- Textarea for Names -->
-            <textarea id="namesInput" class="names-textarea" data-i18n-placeholder="listPlaceholder"
+            <textarea id="namesInput" class="names-textarea" maxlength="65535" data-i18n-placeholder="listPlaceholder"
               placeholder="Nhập mỗi tên trên một dòng..."></textarea>
 
             <!-- Quick Action Buttons -->
@@ -522,14 +525,14 @@
   </div>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="container footer-inner">
+  <footer class="footer pd-footer">
+    <div class="container footer-inner pd-container pd-footer__inner">
       <div class="footer-copy">
-        © 2026 <strong>NamePicker Pro</strong> • <span data-i18n="footerCopy">Một công cụ thuộc hệ sinh thái</span> <a href="https://phongdang.io.vn" target="_blank" class="footer-domain">Phong Đặng</a>
+        © 2026 <strong>NamePicker Pro</strong> • <span data-i18n="footerCopy">Một công cụ thuộc hệ sinh thái</span> <a href="https://phongdang.io.vn" target="_blank" rel="noopener noreferrer" class="footer-domain">Phong Đặng</a>
       </div>
-      <div class="footer-links">
-        <a href="https://phongdang.io.vn" target="_blank" class="footer-link" data-i18n="footerHome">🌐 phongdang.io.vn</a>
-        <a href="https://github.com/dqphong0302" target="_blank" class="footer-link" data-i18n="footerGitHub">💻 GitHub</a>
+      <div class="footer-links pd-footer__links">
+        <a href="https://phongdang.io.vn" target="_blank" rel="noopener noreferrer" class="footer-link" data-i18n="footerHome">🌐 phongdang.io.vn</a>
+        <a href="https://github.com/dqphong0302" target="_blank" rel="noopener noreferrer" class="footer-link" data-i18n="footerGitHub">💻 GitHub</a>
       </div>
     </div>
   </footer>

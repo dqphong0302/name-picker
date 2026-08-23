@@ -10,6 +10,10 @@
 (function (window, document) {
   'use strict';
 
+  const MAX_NAMES = 500;
+  const MAX_NAME_LENGTH = 120;
+  const MAX_HISTORY_ITEMS = 100;
+
   // --- Bilingual Presets Data ---
   const PRESETS = {
     vi: {
@@ -123,8 +127,9 @@
     const raw = DOM.namesInput.value;
     const list = raw
       .split('\n')
-      .map(s => s.trim())
-      .filter(s => s.length > 0);
+      .map(s => s.trim().slice(0, MAX_NAME_LENGTH))
+      .filter(s => s.length > 0)
+      .slice(0, MAX_NAMES);
 
     state.names = list;
     updateCounter();
@@ -140,15 +145,22 @@
   }
 
   function setNamesToTextarea(list) {
-    state.names = list;
-    DOM.namesInput.value = list.join('\n');
+    const safeList = Array.isArray(list)
+      ? list.map(name => String(name).trim().slice(0, MAX_NAME_LENGTH)).filter(Boolean).slice(0, MAX_NAMES)
+      : [];
+    state.names = safeList;
+    DOM.namesInput.value = safeList.join('\n');
     updateCounter();
-    WheelEngine.setNames(list);
+    WheelEngine.setNames(safeList);
     saveList();
   }
 
   function saveList() {
-    localStorage.setItem('np_names_list', DOM.namesInput.value);
+    try {
+      localStorage.setItem('np_names_list', DOM.namesInput.value.slice(0, 65535));
+    } catch (error) {
+      console.warn('Could not save the name list', error);
+    }
   }
 
   function loadList() {
@@ -528,6 +540,7 @@
       time: new Date().toLocaleTimeString(lang === 'vi' ? 'vi-VN' : 'en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' })
     };
     state.history.unshift(item);
+    state.history.length = Math.min(state.history.length, MAX_HISTORY_ITEMS);
     saveHistory();
     renderHistory();
   }
@@ -569,16 +582,31 @@
   }
 
   function saveHistory() {
-    localStorage.setItem('np_history_list', JSON.stringify(state.history));
+    try {
+      localStorage.setItem('np_history_list', JSON.stringify(state.history.slice(0, MAX_HISTORY_ITEMS)));
+    } catch (error) {
+      console.warn('Could not save winner history', error);
+    }
   }
 
   function loadHistory() {
     const saved = localStorage.getItem('np_history_list');
     if (saved) {
       try {
-        state.history = JSON.parse(saved) || [];
+        const parsed = JSON.parse(saved);
+        state.history = Array.isArray(parsed) ? parsed.slice(0, MAX_HISTORY_ITEMS).map((item, index) => {
+          if (!item || typeof item !== 'object') return null;
+          const name = typeof item.name === 'string' ? item.name.trim().slice(0, MAX_NAME_LENGTH) : '';
+          if (!name) return null;
+          return {
+            id: typeof item.id === 'string' && /^[a-zA-Z0-9_-]{1,80}$/.test(item.id) ? item.id : `restored-${index}`,
+            name,
+            time: typeof item.time === 'string' ? item.time.slice(0, 40) : ''
+          };
+        }).filter(Boolean) : [];
       } catch (e) {
         state.history = [];
+        localStorage.removeItem('np_history_list');
       }
     }
     renderHistory();
@@ -603,13 +631,22 @@
     state.history.forEach((item) => {
       const li = document.createElement('li');
       li.className = 'history-item';
-      li.innerHTML = `
-        <span class="history-name">${escapeHtml(item.name)}</span>
-        <div class="history-meta">
-          <span class="history-time">${item.time}</span>
-          <button class="btn-item-delete" title="Xóa mục này" data-del-id="${item.id}">✕</button>
-        </div>
-      `;
+      const name = document.createElement('span');
+      name.className = 'history-name';
+      name.textContent = item.name;
+      const meta = document.createElement('div');
+      meta.className = 'history-meta';
+      const time = document.createElement('span');
+      time.className = 'history-time';
+      time.textContent = item.time;
+      const removeButton = document.createElement('button');
+      removeButton.type = 'button';
+      removeButton.className = 'btn-item-delete';
+      removeButton.title = 'Xóa mục này';
+      removeButton.dataset.delId = item.id;
+      removeButton.textContent = '✕';
+      meta.append(time, removeButton);
+      li.append(name, meta);
       DOM.historyList.appendChild(li);
     });
 
@@ -619,12 +656,6 @@
         deleteHistoryItem(id);
       });
     });
-  }
-
-  function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
   }
 
   // ==========================================================================
