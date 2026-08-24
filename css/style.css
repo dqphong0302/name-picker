@@ -558,7 +558,7 @@ html.dark .wheel-bezel {
 }
 
 html.dark .wheel-hub {
-  background: radial-gradient(circle, #2e4160 20%, #152238 80%, #0e1729 100%);
+  background: radial-gradient(circle, #3a5688 20%, #22355a 80%, #1a2a45 100%);
   border-color: #334155;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), inset 0 0 8px rgba(56, 189, 248, 0.2);
 }
