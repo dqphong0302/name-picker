@@ -147,8 +147,8 @@ a:hover {
   align-items: center;
   gap: 0.4rem;
   padding: 0.35rem 0.65rem;
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-color);
+  background-color: var(--bg-control);
+  border: 1px solid var(--border-control);
   border-radius: var(--radius-md);
   font-size: 0.78rem;
   font-weight: 600;
@@ -176,8 +176,8 @@ a:hover {
   font-weight: 700;
   font-size: 0.78rem;
   padding: 0.4rem 0.75rem;
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-color);
+  background-color: var(--bg-control);
+  border: 1px solid var(--border-control);
   border-radius: var(--radius-full);
   color: var(--text-main);
   cursor: pointer;
@@ -189,8 +189,8 @@ a:hover {
   align-items: center;
   gap: 0.4rem;
   padding: 0.4rem 0.75rem;
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-color);
+  background-color: var(--bg-control);
+  border: 1px solid var(--border-control);
   border-radius: var(--radius-full);
   color: var(--text-muted);
   font-size: 0.78rem;
@@ -231,7 +231,7 @@ a:hover {
 .btn-panel-toggle:hover {
   color: var(--text-main);
   border-color: var(--primary);
-  background-color: var(--bg-card-subtle);
+  background-color: var(--bg-control-hover);
 }
 
 .btn-panel-toggle.active {
@@ -243,7 +243,7 @@ a:hover {
 
 .btn-collapse {
   background: transparent;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border-control);
   color: var(--text-muted);
   border-radius: var(--radius-sm);
   padding: 0.2rem 0.5rem;
@@ -259,7 +259,7 @@ a:hover {
 .btn-collapse:hover {
   color: var(--text-main);
   border-color: var(--primary);
-  background-color: var(--bg-card);
+  background-color: var(--bg-control);
 }
 
 /* --------------------------------------------------------------------------
@@ -424,8 +424,8 @@ a:hover {
   padding: 0.25rem 0.55rem;
   font-size: 0.72rem;
   font-weight: 600;
-  background-color: var(--bg-card-subtle);
-  border: 1px solid var(--border-color);
+  background-color: var(--bg-control-hover);
+  border: 1px solid var(--border-control);
   border-radius: var(--radius-sm);
   color: var(--text-muted);
   cursor: pointer;
@@ -757,9 +757,9 @@ html.dark .wheel-hub {
 }
 
 .btn-secondary {
-  background-color: var(--bg-card-subtle);
+  background-color: var(--bg-control-hover);
   color: var(--text-main);
-  border-color: var(--border-color);
+  border-color: var(--border-control);
 }
 
 .btn-secondary:hover {
@@ -777,7 +777,7 @@ html.dark .wheel-hub {
 
 .btn-outline {
   background: transparent;
-  border-color: var(--border-color);
+  border-color: var(--border-control);
   color: var(--text-main);
 }
 
@@ -795,8 +795,8 @@ html.dark .wheel-hub {
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-md);
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-color);
+  background-color: var(--bg-control);
+  border: 1px solid var(--border-control);
   color: var(--text-main);
   cursor: pointer;
   transition: all var(--transition-fast);
@@ -804,7 +804,7 @@ html.dark .wheel-hub {
 
 .btn-icon:hover {
   border-color: var(--primary);
-  background-color: var(--bg-card-subtle);
+  background-color: var(--bg-control-hover);
 }
 
 .btn-icon.active {
@@ -1043,7 +1043,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
   gap: 0.35rem;
   border-bottom: 1px solid var(--border-color);
   padding: 0.75rem 1.4rem 0 1.4rem;
-  background-color: var(--bg-card-subtle);
+  background-color: var(--bg-control-hover);
   overflow-x: auto;
 }
 
@@ -1068,8 +1068,8 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
 .settings-tab.active {
   color: var(--primary);
-  background-color: var(--bg-card);
-  border-color: var(--border-color);
+  background-color: var(--bg-control);
+  border-color: var(--border-control);
   border-bottom-color: var(--bg-card);
   margin-bottom: -1px;
 }
@@ -1107,7 +1107,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .palette-chip {
   padding: 0.55rem;
   background-color: var(--bg-input);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border-control);
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: all var(--transition-fast);
@@ -1157,7 +1157,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
   align-items: center;
   justify-content: center;
   background-color: var(--bg-input);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border-control);
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: all var(--transition-fast);
