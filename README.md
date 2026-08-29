@@ -75,7 +75,7 @@ Giao diện Glassmorphism cao cấp, Synthetic Web Audio API đa âm sắc, hi�
 * **2 Nút Toggle trên Topbar:** Bấm nhanh `👥 Danh Sách` và `🏆 Lịch Sử` để ẩn/hiện từng cột.
 * **Nút thu nhỏ `◀ Ẩn` / `Ẩn ▶` trên đầu mỗi cột:** Cho phép ẩn nhanh chỉ với 1 click.
 * **Tự động phóng to Vòng quay:** Khi ẩn cả 2 cột bên, vòng quay sẽ tự động phóng to tối đa (chế độ Trình chiếu Presentation Focus) cực kỳ bắt mắt cho lớp học và sự kiện.
-* **Lưu trạng thái:** Tự động ghi nhớ tùy chọn ẩn/hiện cột vào `LocalStorage`.
+* **Lưu trạng thái:** Tự động ghi nhớ tùy chọn ẩn/hiện cột vào `localStorage`.
 
 ### 7. 🏆 Phím Tắt & Toàn Màn Hình
 * Phím tắt: **Space** để Quay/Đóng modal, **Escape** để đóng nhanh.
