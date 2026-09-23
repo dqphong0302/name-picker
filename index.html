@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi" class="dark">
+<html lang="vi">
 
 <head>
   <!-- Google tag (gtag.js) -->
@@ -25,7 +25,7 @@
       try {
         var t = localStorage.getItem('pd_theme');
         if (t !== 'light' && t !== 'dark') {
-          t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          t = 'light';
         }
         document.documentElement.classList.toggle('dark', t === 'dark');
       } catch (e) {}
@@ -36,7 +36,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700&family=Montserrat:wght@500;700;800;900&family=Oswald:wght@600;700&family=Playfair+Display:wght@700;900&family=Quicksand:wght@600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Montserrat:wght@500;700&family=Oswald:wght@600;700&family=Playfair+Display:wght@700&family=Quicksand:wght@600;700&display=swap"
     rel="stylesheet">
 
   <!-- Main Unified Stylesheet -->
@@ -76,12 +76,12 @@
         <!-- Panel Visibility Toggles -->
         <button id="toggleListBtn" class="btn-panel-toggle active" data-i18n-title="btnToggleList"
           title="Ẩn/Hiện Danh Sách">
-          <span>👥</span> <span data-i18n="listTitle">Danh Sách</span>
+          <span><svg class="pd-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span> <span data-i18n="listTitle">Danh Sách</span>
         </button>
 
         <button id="toggleHistoryBtn" class="btn-panel-toggle active" data-i18n-title="btnToggleHistory"
           title="Ẩn/Hiện Lịch Sử">
-          <span>🏆</span> <span data-i18n="historyTitle">Lịch Sử</span>
+          <span><svg class="pd-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></span> <span data-i18n="historyTitle">Lịch Sử</span>
         </button>
 
         <!-- Duration Timer Slider -->
@@ -96,18 +96,18 @@
         <!-- Sound Toggle -->
         <button id="soundToggleBtn" class="btn-icon active" data-i18n-title="soundToggleTitle"
           title="Bật / Tắt âm thanh">
-          <span id="soundIcon">🔊</span>
+          <span id="soundIcon"><svg class="pd-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4.7a.7.7 0 0 0-1.2-.5L6.4 7.6A1.4 1.4 0 0 1 5.4 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.4a1.4 1.4 0 0 1 1 .4l3.4 3.4a.7.7 0 0 0 1.2-.5z"/><path d="M16 9a5 5 0 0 1 0 6M19.4 18.4a9 9 0 0 0 0-12.7"/></svg></span>
         </button>
 
         <!-- Theme Toggle -->
         <button id="themeToggleBtn" class="btn-icon" data-i18n-title="themeToggleTitle"
           title="Chuyển chế độ Sáng / Tối" data-pd-theme-toggle>
-          <span id="themeIcon" data-pd-theme-icon>☀️</span>
+          <span id="themeIcon" data-pd-theme-icon></span>
         </button>
 
         <!-- Settings Modal Trigger -->
         <button id="settingsBtn" class="btn-icon" data-i18n-title="settingsBtnTitle" title="Cài đặt hệ thống">
-          <span>⚙️</span>
+          <span><svg class="pd-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></span>
         </button>
 
         <!-- Language Toggle -->
@@ -117,7 +117,7 @@
 
         <!-- Fullscreen Toggle -->
         <button id="fullscreenBtn" class="btn-icon" data-i18n-title="fullscreenBtnTitle" title="Toàn màn hình">
-          <span>⛶</span>
+          <span><svg class="pd-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"/></svg></span>
         </button>
       </div>
     </div>
@@ -135,7 +135,7 @@
         <section class="card" id="leftPanel">
           <div class="card-header">
             <span class="card-title">
-              <span>👥</span> <span data-i18n="listTitle">Danh Sách</span>
+              <span><svg class="pd-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span> <span data-i18n="listTitle">Danh Sách</span>
             </span>
             <div class="flex items-center gap-2">
               <span id="namesCount" class="badge badge-primary">0 mục</span>
@@ -152,16 +152,16 @@
             <!-- Quick Action Buttons -->
             <div class="list-actions-grid">
               <button id="shuffleBtn" class="btn btn-secondary">
-                <span>🔀</span> <span data-i18n="btnShuffle">Xáo trộn</span>
+                <span><svg class="pd-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m18 14 4 4-4 4M18 2l4 4-4 4"/><path d="M2 18h1.97a4 4 0 0 0 3.3-1.7l5.45-8.6a4 4 0 0 1 3.3-1.7H22M2 6h1.97a4 4 0 0 1 3.3 1.7l.35.55M22 18h-5.97a4 4 0 0 1-3.3-1.7l-.35-.55"/></svg></span> <span data-i18n="btnShuffle">Xáo trộn</span>
               </button>
               <button id="sortBtn" class="btn btn-secondary">
-                <span>🔤</span> <span data-i18n="btnSort">Xếp A-Z</span>
+                <span><svg class="pd-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 15 4-8 4 8M4 13h6"/><circle cx="18" cy="12" r="3"/><path d="M21 9v6"/></svg></span> <span data-i18n="btnSort">Xếp A-Z</span>
               </button>
               <button id="dedupeBtn" class="btn btn-secondary">
-                <span>🧹</span> <span data-i18n="btnDedupe">Lọc trùng</span>
+                <span><svg class="pd-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21M22 21H7M5 11l9 9"/></svg></span> <span data-i18n="btnDedupe">Lọc trùng</span>
               </button>
               <button id="clearListBtn" class="btn btn-secondary">
-                <span>🗑️</span> <span data-i18n="btnClear">Xóa hết</span>
+                <span><svg class="pd-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span> <span data-i18n="btnClear">Xóa hết</span>
               </button>
             </div>
 
@@ -170,15 +170,15 @@
               <span
                 style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;"
                 data-i18n="presetsTitle">
-                ⭐ Danh sách mẫu (Presets)
+                Danh sách mẫu (Presets)
               </span>
               <div class="preset-pills">
-                <button type="button" class="preset-btn" data-preset="class" data-i18n="presetClass">🎓 Lớp học</button>
-                <button type="button" class="preset-btn" data-preset="numbers" data-i18n="presetNumbers">🔢 Số
+                <button type="button" class="preset-btn" data-preset="class" data-i18n="presetClass">Lớp học</button>
+                <button type="button" class="preset-btn" data-preset="numbers" data-i18n="presetNumbers">Số
                   1-20</button>
-                <button type="button" class="preset-btn" data-preset="minigame" data-i18n="presetMinigame">🎁 Mini
+                <button type="button" class="preset-btn" data-preset="minigame" data-i18n="presetMinigame">Mini
                   Game</button>
-                <button type="button" class="preset-btn" data-preset="teams" data-i18n="presetTeams">🛡️ 4 Đội
+                <button type="button" class="preset-btn" data-preset="teams" data-i18n="presetTeams">4 Đội
                   nhóm</button>
               </div>
             </div>
@@ -220,7 +220,7 @@
 
           <!-- Spin Action Button -->
           <button id="spinBtn" class="btn-spin">
-            <span>✨</span>
+            <span><svg class="pd-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.94 15.5A2 2 0 0 0 8.5 14.06l-6.14-1.58a.5.5 0 0 1 0-.96L8.5 9.94A2 2 0 0 0 9.94 8.5l1.58-6.14a.5.5 0 0 1 .96 0l1.58 6.14a2 2 0 0 0 1.44 1.44l6.14 1.58a.5.5 0 0 1 0 .96l-6.14 1.58a2 2 0 0 0-1.44 1.44l-1.58 6.14a.5.5 0 0 1-.96 0z"/></svg></span>
             <span data-i18n="btnSpin">QUAY NGAY</span>
           </button>
 
@@ -237,7 +237,7 @@
         <section class="card" id="rightPanel">
           <div class="card-header">
             <span class="card-title">
-              <span>🏆</span> <span data-i18n="historyTitle">Lịch Sử Trúng</span>
+              <span><svg class="pd-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></span> <span data-i18n="historyTitle">Lịch Sử Trúng</span>
             </span>
             <div class="flex items-center gap-2">
               <span id="historyCount" class="badge badge-indigo">0</span>
@@ -250,7 +250,7 @@
             <div class="history-scroll">
               <!-- Empty State -->
               <div id="historyEmpty" class="empty-state">
-                <div class="empty-icon">🎯</div>
+                <div class="empty-icon"><svg class="pd-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
                 <div class="empty-title" data-i18n="historyEmptyTitle">Chưa có lượt quay</div>
                 <div class="empty-sub" data-i18n="historyEmptySub">Kết quả trúng thưởng sẽ hiển thị tại đây.</div>
               </div>
@@ -263,10 +263,10 @@
           <div class="card-footer">
             <div class="flex gap-2">
               <button id="exportHistoryBtn" class="btn btn-secondary btn-block" title="Xuất kết quả">
-                <span>📥</span> <span data-i18n="btnExport">Xuất File</span>
+                <span><svg class="pd-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5M12 15V3"/></svg></span> <span data-i18n="btnExport">Xuất File</span>
               </button>
               <button id="clearHistoryBtn" class="btn btn-outline btn-block" title="Xóa toàn bộ lịch sử">
-                <span>🗑️</span> <span data-i18n="btnClearHistory">Xóa lịch sử</span>
+                <span><svg class="pd-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span> <span data-i18n="btnClearHistory">Xóa lịch sử</span>
               </button>
             </div>
           </div>
@@ -283,8 +283,8 @@
     <div class="modal-box">
       <!-- Winner Celebration Hero -->
       <div class="winner-hero">
-        <span class="winner-title-badge" data-i18n="modalTitle">🎉 KẾT QUẢ BỐC THĂM</span>
-        <div class="winner-icon">🏆</div>
+        <span class="winner-title-badge" data-i18n="modalTitle">KẾT QUẢ BỐC THĂM</span>
+        <div class="winner-icon"><svg class="pd-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div>
       </div>
 
       <!-- Winner Body -->
@@ -295,10 +295,10 @@
         <!-- Winner Actions -->
         <div class="winner-actions">
           <button id="removeWinnerBtn" class="btn btn-danger">
-            <span data-i18n="modalBtnRemove">✕ Xóa khỏi DS</span>
+            <span data-i18n="modalBtnRemove">Xóa khỏi DS</span>
           </button>
           <button id="keepWinnerBtn" class="btn btn-primary">
-            <span data-i18n="modalBtnKeep">✓ Giữ lại tên</span>
+            <span data-i18n="modalBtnKeep">Giữ lại tên</span>
           </button>
         </div>
       </div>
@@ -311,16 +311,16 @@
   <div id="settingsModal" class="modal-backdrop hidden">
     <div class="modal-box modal-box-large">
       <div class="modal-head">
-        <span class="modal-title" data-i18n="settingsTitle">⚙️ Cài Đặt Hệ Thống</span>
-        <button id="closeSettingsBtn" class="modal-close">✕</button>
+        <span class="modal-title" data-i18n="settingsTitle">Cài Đặt Hệ Thống</span>
+        <button id="closeSettingsBtn" class="modal-close"><svg class="pd-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
       </div>
 
       <!-- Settings Tabs Header -->
       <div class="settings-tabs">
-        <button type="button" class="settings-tab active" data-sec="wheel" data-i18n="tabWheel">🎡 Vòng quay</button>
-        <button type="button" class="settings-tab" data-sec="audio" data-i18n="tabAudio">🔊 Âm thanh</button>
-        <button type="button" class="settings-tab" data-sec="font" data-i18n="tabFont">🔤 Phông & Màu</button>
-        <button type="button" class="settings-tab" data-sec="lang" data-i18n="tabLang">🌐 Ngôn ngữ</button>
+        <button type="button" class="settings-tab active" data-sec="wheel" data-i18n="tabWheel">Vòng quay</button>
+        <button type="button" class="settings-tab" data-sec="audio" data-i18n="tabAudio">Âm thanh</button>
+        <button type="button" class="settings-tab" data-sec="font" data-i18n="tabFont">Phông & Màu</button>
+        <button type="button" class="settings-tab" data-sec="lang" data-i18n="tabLang">Ngôn ngữ</button>
       </div>
 
       <!-- Settings Content -->
@@ -380,11 +380,11 @@
                 style="padding: 0.25rem 0.6rem; font-size: 0.72rem;" data-i18n="btnTestSound">Thử âm thanh</button>
             </div>
             <select id="tickStyleSelect" class="select-field">
-              <option value="mechanical">⚙️ Cơ học (Mechanical Click - Mặc định)</option>
-              <option value="wood">🪵 Gõ gỗ (Woodblock Ping)</option>
-              <option value="bell">🔔 Chuông ngân (Metallic Bell)</option>
-              <option value="retro">👾 Game 8-bit (Retro Arcade)</option>
-              <option value="soft">🫧 Nhẹ nhàng (Soft Tap)</option>
+              <option value="mechanical">Cơ học (Mechanical Click - Mặc định)</option>
+              <option value="wood">Gõ gỗ (Woodblock Ping)</option>
+              <option value="bell">Chuông ngân (Metallic Bell)</option>
+              <option value="retro">Game 8-bit (Retro Arcade)</option>
+              <option value="soft">Nhẹ nhàng (Soft Tap)</option>
             </select>
           </div>
 
@@ -395,10 +395,10 @@
                 style="padding: 0.25rem 0.6rem; font-size: 0.72rem;" data-i18n="btnTestSound">Thử âm thanh</button>
             </div>
             <select id="winStyleSelect" class="select-field">
-              <option value="fanfare">🎺 Kèn đồng chiến thắng (Grand Fanfare)</option>
-              <option value="chime">✨ Chuông thần kỳ (Magical Chime)</option>
-              <option value="applause">👏 Tiếng vỗ tay hoan hô (Crowd Applause)</option>
-              <option value="retro_win">🎮 Nhạc thắng game (Retro Jingle)</option>
+              <option value="fanfare">Kèn đồng chiến thắng (Grand Fanfare)</option>
+              <option value="chime">Chuông thần kỳ (Magical Chime)</option>
+              <option value="applause">Tiếng vỗ tay hoan hô (Crowd Applause)</option>
+              <option value="retro_win">Nhạc thắng game (Retro Jingle)</option>
             </select>
           </div>
 
@@ -441,13 +441,13 @@
             <div class="palette-grid">
               <div class="palette-chip active" data-pal="rainbow">
                 <div class="palette-colors-bar">
-                  <span style="background: #1e40af;"></span>
+                  <span style="background: #1d4f91;"></span>
                   <span style="background: #ef4444;"></span>
                   <span style="background: #10b981;"></span>
                   <span style="background: #f59e0b;"></span>
                   <span style="background: #8b5cf6;"></span>
                 </div>
-                <span class="palette-name">🌈 Rainbow</span>
+                <span class="palette-name">Rainbow</span>
               </div>
 
               <div class="palette-chip" data-pal="cyberpunk">
@@ -456,31 +456,31 @@
                   <span style="background: #ec4899;"></span>
                   <span style="background: #8b5cf6;"></span>
                   <span style="background: #eab308;"></span>
-                  <span style="background: #3b82f6;"></span>
+                  <span style="background: #1d4f91;"></span>
                 </div>
-                <span class="palette-name">⚡ Cyberpunk</span>
+                <span class="palette-name">Cyberpunk</span>
               </div>
 
               <div class="palette-chip" data-pal="pastel">
                 <div class="palette-colors-bar">
-                  <span style="background: #60a5fa;"></span>
+                  <span style="background: #7fb0ee;"></span>
                   <span style="background: #f87171;"></span>
                   <span style="background: #4ade80;"></span>
                   <span style="background: #facc15;"></span>
                   <span style="background: #c084fc;"></span>
                 </div>
-                <span class="palette-name">🍬 Pastel</span>
+                <span class="palette-name">Pastel</span>
               </div>
 
               <div class="palette-chip" data-pal="royal">
                 <div class="palette-colors-bar">
-                  <span style="background: #1e3a8a;"></span>
+                  <span style="background: #173f75;"></span>
                   <span style="background: #d97706;"></span>
                   <span style="background: #047857;"></span>
-                  <span style="background: #4338ca;"></span>
+                  <span style="background: #173f75;"></span>
                   <span style="background: #be123c;"></span>
                 </div>
-                <span class="palette-name">👑 Royal Gold</span>
+                <span class="palette-name">Royal Gold</span>
               </div>
 
               <div class="palette-chip" data-pal="sunset">
@@ -491,18 +491,18 @@
                   <span style="background: #fb7185;"></span>
                   <span style="background: #c026d3;"></span>
                 </div>
-                <span class="palette-name">🌅 Sunset</span>
+                <span class="palette-name">Sunset</span>
               </div>
 
               <div class="palette-chip" data-pal="ocean">
                 <div class="palette-colors-bar">
-                  <span style="background: #1e40af;"></span>
+                  <span style="background: #1d4f91;"></span>
                   <span style="background: #0891b2;"></span>
                   <span style="background: #06b6d4;"></span>
-                  <span style="background: #2563eb;"></span>
-                  <span style="background: #3b82f6;"></span>
+                  <span style="background: #1d4f91;"></span>
+                  <span style="background: #1d4f91;"></span>
                 </div>
-                <span class="palette-name">🌊 Ocean Cyan</span>
+                <span class="palette-name">Ocean Cyan</span>
               </div>
             </div>
           </div>
@@ -535,13 +535,13 @@
 
   <!-- Footer -->
   <footer class="footer pd-footer">
+      <p class="pd-eco-line">Hệ sinh thái của ThS. Đặng Quốc Phong: <a href="https://phongdang.io.vn" target="_blank" rel="noopener noreferrer">phongdang.io.vn</a> · <a href="https://classtools.vn" target="_blank" rel="noopener noreferrer">classtools.vn</a></p>
     <div class="container footer-inner pd-container pd-footer__inner">
       <div class="footer-copy">
         © 2026 <strong>NamePicker Pro</strong> • <span data-i18n="footerCopy">Một công cụ thuộc hệ sinh thái</span> <a href="https://phongdang.io.vn" target="_blank" rel="noopener noreferrer" class="footer-domain">Phong Đặng</a>
       </div>
       <div class="footer-links pd-footer__links">
-        <a href="https://phongdang.io.vn" target="_blank" rel="noopener noreferrer" class="footer-link" data-i18n="footerHome">🌐 phongdang.io.vn</a>
-        <a href="https://github.com/dqphong0302" target="_blank" rel="noopener noreferrer" class="footer-link" data-i18n="footerGitHub">💻 GitHub</a>
+        <a href="https://github.com/dqphong0302" target="_blank" rel="noopener noreferrer" class="footer-link" data-i18n="footerGitHub">GitHub</a>
       </div>
     </div>
   </footer>

@@ -99,11 +99,11 @@ const SoundEngine = (function () {
       if (soundBtn && soundIcon) {
         if (state.enabled) {
           soundBtn.classList.add('active');
-          soundIcon.textContent = '🔊';
+          soundIcon.innerHTML = '<svg class="pd-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4.7a.7.7 0 0 0-1.2-.5L6.4 7.6A1.4 1.4 0 0 1 5.4 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.4a1.4 1.4 0 0 1 1 .4l3.4 3.4a.7.7 0 0 0 1.2-.5z"/><path d="M16 9a5 5 0 0 1 0 6M19.4 18.4a9 9 0 0 0 0-12.7"/></svg>';
           soundBtn.setAttribute('title', 'Tắt âm thanh');
         } else {
           soundBtn.classList.remove('active');
-          soundIcon.textContent = '🔇';
+          soundIcon.innerHTML = '<svg class="pd-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4.7a.7.7 0 0 0-1.2-.5L6.4 7.6A1.4 1.4 0 0 1 5.4 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.4a1.4 1.4 0 0 1 1 .4l3.4 3.4a.7.7 0 0 0 1.2-.5z"/><path d="m22 9-6 6M16 9l6 6"/></svg>';
           soundBtn.setAttribute('title', 'Bật âm thanh');
         }
       }

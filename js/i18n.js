@@ -26,10 +26,10 @@ const i18n = (function () {
       btnDedupe: 'Lọc trùng',
       btnClear: 'Xóa hết',
       presetsTitle: 'Danh sách mẫu (Presets)',
-      presetClass: '🎓 Lớp học',
-      presetNumbers: '🔢 Số 1-20',
-      presetMinigame: '🎁 Mini Game',
-      presetTeams: '🛡️ 4 Đội nhóm',
+      presetClass: 'Lớp học',
+      presetNumbers: 'Số 1-20',
+      presetMinigame: 'Mini Game',
+      presetTeams: '4 Đội nhóm',
 
       btnSpin: 'QUAY NGAY',
       spinHintPrefix: 'Nhấn nút hoặc bấm',
@@ -44,17 +44,17 @@ const i18n = (function () {
       btnExport: 'Xuất File',
       btnClearHistory: 'Xóa lịch sử',
 
-      modalTitle: '🎉 KẾT QUẢ BỐC THĂM',
+      modalTitle: 'KẾT QUẢ BỐC THĂM',
       modalSubtitle: 'Người may mắn trúng thưởng:',
-      modalBtnRemove: '✕ Xóa khỏi DS',
-      modalBtnKeep: '✓ Giữ lại tên',
-      modalBtnSpinAgain: '🚀 Quay Lượt Tiếp Theo',
+      modalBtnRemove: 'Xóa khỏi DS',
+      modalBtnKeep: 'Giữ lại tên',
+      modalBtnSpinAgain: 'Quay Lượt Tiếp Theo',
 
-      settingsTitle: '⚙️ Cài Đặt Hệ Thống',
-      tabWheel: '🎡 Vòng quay',
-      tabAudio: '🔊 Âm thanh',
-      tabFont: '🔤 Phông & Màu',
-      tabLang: '🌐 Ngôn ngữ',
+      settingsTitle: 'Cài Đặt Hệ Thống',
+      tabWheel: 'Vòng quay',
+      tabAudio: 'Âm thanh',
+      tabFont: 'Phông & Màu',
+      tabLang: 'Ngôn ngữ',
 
       settingDuration: 'Thời gian quay (giây):',
       settingPalette: 'Bảng màu vòng quay:',
@@ -68,7 +68,7 @@ const i18n = (function () {
       settingWinStyle: 'Kiểu tiếng thắng (Victory sound):',
       btnTestSound: 'Thử âm thanh',
 
-      settingTtsSection: '🗣️ Giọng đọc xướng tên người thắng (TTS)',
+      settingTtsSection: 'Giọng đọc xướng tên người thắng (TTS)',
       settingTtsEnable: 'Tự động đọc tên người trúng thưởng (Giọng Google / AI)',
       settingTtsVoice: 'Chọn giọng đọc:',
       btnTestTts: 'Thử giọng đọc',
@@ -92,8 +92,8 @@ const i18n = (function () {
 
       // Footer
       footerCopy: 'Một công cụ thuộc hệ sinh thái',
-      footerHome: '🌐 phongdang.io.vn',
-      footerGitHub: '💻 GitHub'
+      footerHome: 'phongdang.io.vn',
+      footerGitHub: 'GitHub'
     },
 
     en: {
@@ -115,10 +115,10 @@ const i18n = (function () {
       btnDedupe: 'Deduplicate',
       btnClear: 'Clear All',
       presetsTitle: 'Preset Templates',
-      presetClass: '🎓 Classroom',
-      presetNumbers: '🔢 Numbers 1-20',
-      presetMinigame: '🎁 Mini Game',
-      presetTeams: '🛡️ 4 Teams',
+      presetClass: 'Classroom',
+      presetNumbers: 'Numbers 1-20',
+      presetMinigame: 'Mini Game',
+      presetTeams: '4 Teams',
 
       btnSpin: 'SPIN NOW',
       spinHintPrefix: 'Click button or press',
@@ -133,17 +133,17 @@ const i18n = (function () {
       btnExport: 'Export TXT',
       btnClearHistory: 'Clear History',
 
-      modalTitle: '🎉 LUCKY WINNER',
+      modalTitle: 'LUCKY WINNER',
       modalSubtitle: 'The fortunate winner is:',
-      modalBtnRemove: '✕ Remove Winner',
-      modalBtnKeep: '✓ Keep Winner',
-      modalBtnSpinAgain: '🚀 Spin Next Round',
+      modalBtnRemove: 'Remove Winner',
+      modalBtnKeep: 'Keep Winner',
+      modalBtnSpinAgain: 'Spin Next Round',
 
-      settingsTitle: '⚙️ System Settings',
-      tabWheel: '🎡 Wheel',
-      tabAudio: '🔊 Sound',
-      tabFont: '🔤 Fonts & Colors',
-      tabLang: '🌐 Language',
+      settingsTitle: 'System Settings',
+      tabWheel: 'Wheel',
+      tabAudio: 'Sound',
+      tabFont: 'Fonts & Colors',
+      tabLang: 'Language',
 
       settingDuration: 'Spin Duration (seconds):',
       settingPalette: 'Wheel Color Palette:',
@@ -157,7 +157,7 @@ const i18n = (function () {
       settingWinStyle: 'Victory sound style:',
       btnTestSound: 'Preview Sound',
 
-      settingTtsSection: '🗣️ Winner Voice Announcement (TTS)',
+      settingTtsSection: 'Winner Voice Announcement (TTS)',
       settingTtsEnable: 'Auto-announce winner with voice (Google / AI Voice)',
       settingTtsVoice: 'Select voice:',
       btnTestTts: 'Test Voice',
@@ -181,8 +181,8 @@ const i18n = (function () {
 
       // Footer
       footerCopy: 'A tool from the ecosystem of',
-      footerHome: '🌐 phongdang.io.vn',
-      footerGitHub: '💻 GitHub'
+      footerHome: 'phongdang.io.vn',
+      footerGitHub: 'GitHub'
     }
   };
 
